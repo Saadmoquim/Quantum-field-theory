@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,physics}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+% Set page borders
+\geometry{
+    a4paper,
+    top=1in,
+    bottom=1in,
+    left=1in,
+    right=1in
+}
+
+% Title formatting
+\titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}
+
+% Header & Footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Canonical Quantization of Scalar Fields}
+\lhead{Quantum Field Theory}
+\cfoot{\thepage}
+
+% Document metadata
+\title{\bfseries Canonical Quantization of a Real Scalar Field}
+\author{Saad Moquim,saad22@iisertvm.ac.in}
+\date{}
+
+\begin{document}
+\maketitle
+\onehalfspacing
+\section{Klein-Gordon equation}
+In quantum mechanics, the most dealt with equation is the Schrodinger equation which describes the time evolution of a wave function relating it to its Hamiltonian.\\
+\begin{equation}
+i\partial_t{\psi{(x,t)}}=\hat{H}\psi(x,t)\\    
+\end{equation}
+This is not a relativistic theory however because it relies on the fact that the time evolution of the state and its space-dependence can be solved for separately hence treating time and spatial coordinates separately.One cannot have a 1+3 dimension treatment in this theory.\\
+The simplest modification to the pre-existing equation to make it relativistic can be done by considering the fact that:
+\begin{equation}
+    E^2=m^2c^4+p^2c^2
+\end{equation}
+\begin{equation}
+    E=\pm\sqrt{m^2c^4+p^2c^2}
+\end{equation}
+We immediately run into an issue upon doing this considering that our hamiltonian can be written using either one of the signs.In quantum mechanics negative energy states imply instability hence particles can keep falling to lower energy states and this can keep happening forever.
+To avoid this issue, we square both sides of the schrodinger equation and then plug in $(\hat{H}^2{\psi}=(m^2-\nabla^2){\psi}=(i\partial_t\psi)^2$ and obtain:
+\begin{equation}
+    (\Box+m^2)\psi=0
+\end{equation}
+Where $\box$ is $\partial_\mu\partial^\mu$ with the convention $(+,-,-,-)$ (this notation is consistent with Peskin Schroeder but it should be a criminal offence to the time positive metric.However the metric signature does not matter as long as i mention it earlier and stay consistent with it.)
+
+The good thing about this equation is it's covariant nature and the fact that we succeeded at forming a relativistic theory.
+
+\section{Classical Theory}
+
+The Lagrangian density for a real scalar field $\phi(x)$ is given by:
+\begin{equation}
+    \mathcal{L} = \frac{1}{2} \partial^\mu \phi \, \partial_\mu \phi - \frac{1}{2} m^2 \phi^2
+\end{equation}
+
+Applying the Euler-Lagrange equation yields the Klein-Gordon equation:
+\begin{equation}
+    (\Box + m^2)\phi(x) = 0
+\end{equation}
+
+The conjugate momentum associated with the field is:
+\begin{equation}
+    \pi(x) = \frac{\partial \mathcal{L}}{\partial (\partial^0 \phi)} = \dot{\phi}(x)
+\end{equation}
+
+\section{Canonical Quantization}
+
+Promote $\phi(x)$ and $\pi(x)$ to operators $\hat{\phi}(x)$ and $\hat{\pi}(x)$ and impose equal-time commutation relations:
+\begin{align}
+    [\hat{\phi}(t, \vec{x}), \hat{\pi}(t, \vec{y})] &= i \delta^3(\vec{x} - \vec{y}) \\
+    [\hat{\phi}(t, \vec{x}), \hat{\phi}(t, \vec{y})] &= 0 \\
+    [\hat{\pi}(t, \vec{x}), \hat{\pi}(t, \vec{y})] &= 0
+\end{align}
+
+\section{Field Expansion}
+
+The quantized field can be expanded in terms of creation and annihilation operators:
+\begin{equation}
+    \hat{\phi}(x) = \int \frac{d^3p}{(2\pi)^3} \frac{1}{\sqrt{2\omega_{\vec{p}}}} \left( 
+    \hat{a}_{\vec{p}} e^{-ip \cdot x} + \hat{a}_{\vec{p}}^\dagger e^{ip \cdot x} \right)
+\end{equation}
+where $p \cdot x = \omega_{\vec{p}} t - \vec{p} \cdot \vec{x}$ and $\omega_{\vec{p}} = \sqrt{\vec{p}^{\,2} + m^2}$.
+
+The commutation relation between the operators is:
+\begin{equation}
+    [\hat{a}_{\vec{p}}, \hat{a}_{\vec{p}'}^\dagger] = (2\pi)^3 \delta^3(\vec{p} - \vec{p}')
+\end{equation}
+
+\section{Hamiltonian}
+
+The Hamiltonian density is:
+\begin{equation}
+    \mathcal{H} = \frac{1}{2} \hat{\pi}^2 + \frac{1}{2} (\nabla \hat{\phi})^2 + \frac{1}{2} m^2 \hat{\phi}^2
+\end{equation}
+
+So the total Hamiltonian becomes:
+\begin{equation}
+    \hat{H} = \int d^3x \, \mathcal{H}
+\end{equation}
+
+In terms of creation and annihilation operators:
+\begin{equation}
+    \hat{H} = \int \frac{d^3p}{(2\pi)^3} \, \omega_{\vec{p}} \left( \hat{a}_{\vec{p}}^\dagger \hat{a}_{\vec{p}} + \frac{1}{2} \delta^3(0) \right)
+\end{equation}
+
+The $\delta^3(0)$ term represents the vacuum (zero-point) energy, which is formally infinite and often subtracted by normal ordering.
+
+\end{document}
